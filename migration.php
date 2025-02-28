@@ -14,6 +14,7 @@ Capsule::schema()->create($tableName, function (Blueprint $table) {
     $table->increments("id");
     $table->string("short_code")->unique();
     $table->text("original_url");
+    $table->dateTime("expiration_date");
     $table->timestamps();
 });
 
