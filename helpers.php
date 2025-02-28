@@ -9,11 +9,19 @@ function generate_short_code(): string
 function get_expiration_date(int $days): string
 {
     $today = new DateTime();
-    if ($days < 0) {
-        $days = abs($days);
-        $today->sub(new DateInterval("P" . $days . "D"));
-    } else {
-        $today->add(new DateInterval("P" . $days . "D"));
-    }
+    $interval = new DateInterval("P" . abs($days) . "D");
+
+    $days < 0 ? $today->sub($interval) : $today->add($interval);
+
     return $today->format("Y-m-d H:i:s");
+}
+
+function get_data()
+{
+    $json = file_get_contents("php://input");
+    $data = json_decode($json, true);
+    if (!$data) {
+        return [];
+    }
+    return $data;
 }
