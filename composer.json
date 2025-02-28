@@ -11,6 +11,9 @@
       "Src\\": "src/"
     }
   },
+  "scripts": {
+    "migrate": "php migration.php"
+  },
   "config": {
     "platform": {
       "php": "8.2.0"
@@ -19,6 +22,7 @@
   "require": {
     "php": "8.2.*",
     "ext-json": "*",
-    "vlucas/phpdotenv": "5.6.1"
+    "vlucas/phpdotenv": "5.6.1",
+    "illuminate/database": "12.0.1"
   }
 }
