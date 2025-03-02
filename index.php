@@ -22,8 +22,11 @@ $dotenv->load();
 $router = new Router(getenv("BASE_URL"));
 $router->namespace("Src\\Controller");
 
-$router->get("/{shortCode}", "ApiController:redirectURL", "redirect.url");
-$router->post("/shorten-url", "ApiController:shortenURL", "short.url", ValidateRequestMethodMiddleware::class);
+$router->get("/{shortCode}", "APIController:redirectURL", "redirect.url");
+$router->post("/shorten-url", "APIController:shortenURL", "short.url", ValidateRequestMethodMiddleware::class);
+
+$router->group("qrcode");
+$router->post("/make", "APIController:makeQRCode", "make.qrcode", ValidateRequestMethodMiddleware::class);
 
 $router->dispatch();
 
